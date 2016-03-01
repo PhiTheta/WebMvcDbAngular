@@ -1,5 +1,6 @@
 ﻿<!DOCTYPE html>
-<html ng-app="registrationModule">
+@*<html ng-app="registrationModule">*@
+<html ng-app="plunker">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,13 +12,14 @@
     <script src="~/Scripts/bootstrap.js"></script>
     <script src="~/Scripts/angular.js"></script>
     @*<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>*@
-    <script src="~/Scripts/MyJavaScript.js"></script>
+    <script src="~/Scripts/NewScripts/ScriptService.js"></script>
+    @*<script src="~/Scripts/MyJavaScript.js"></script>
     <script src="~/Scripts/registration-module.js"></script>
-        <script src="~/Scripts/Courses/courses-controller.js"></script>
-        @RenderSection("JavascriptInHead", required: false)
+    <script src="~/Scripts/Courses/courses-controller.js"></script>*@
+    @*@RenderSection("JavascriptInHead", required: false)*@
 </head>
 @*<body ng-app="githubViewer">*@
-<body>
+<body ng-controller="MainCtrl">
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
