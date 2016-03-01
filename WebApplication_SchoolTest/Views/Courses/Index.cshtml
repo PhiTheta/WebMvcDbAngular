@@ -1,0 +1,106 @@
+﻿@*@model IEnumerable<WebApplication_SchoolTest.Models.Course>*@
+@model string
+@*@model JsonResult*@
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section JavascriptInHead
+{
+    <script src="~/Scripts/Courses/courses-controller.js"></script>
+    <script type="text/javascript">
+        registrationModule.factory('bootstrappedData', function() {
+            return {
+                courses: @Html.Raw(Model)
+            };
+        });
+    </script>
+}
+
+<h2>@Model</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+@*<table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Credits)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EnrollmentID)
+            </th>
+            <th></th>
+        </tr>
+
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Credits)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EnrollmentID)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.CourseID }) |
+                @Html.ActionLink("Details", "Details", new { id=item.CourseID }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.CourseID })
+            </td>
+        </tr>
+    }
+</table>
+*@
+
+@*<button type="button"></button> 
+<button type="button">Click Me!</button> 
+<button type="button">Click Me!</button>*@ 
+
+<label ng-init="search.all=''">Any</label> <input type="text" ng-model="search.all"><br>
+<label ng-init="search.id=''">ID</label> <input type="text" ng-model="search.id"><br>
+<label ng-init="search.sirName=''">Sir Name</label> <input type="text" ng-model="search.sirName"><br>
+<label ng-init="search.lastName=''">LAst Name</label> <input type="text" ng-model="search.lastName"><br>
+<label ng-init="search.course=''">Course</label> <input type="text" ng-model="search.course"><br>
+<label ng-init="search.credit=''">Credit</label> <input type="text" ng-model="search.credit"><br>
+
+<hr>
+@*
+    <label>Filter</label> <input type="text" ng-model="search[filter]"> by {{filter}} <br>
+    <ul>
+        <li><a href="" ng-click="changeFilterAll('$')">Any</a></li>
+        <li><a href="" ng-click="changeFilterId('id')">By ID</a></li>
+        <li><a href="" ng-click="changeFilterName('name')">By Name</a></li>
+        <li><a href="" ng-click="changeFilterCourse('course')">By Course</a></li>
+        <li><a href="" ng-click="changeFilterCredit('credit')">By Credit</a></li>
+    </ul>*@
+
+<div class="container" ng-controller="CoursesController">
+    <div class=" row">
+        <div class="span10">
+            <table class="table table-condensed table-hover">
+                <tr>
+                    <th ng-click="orderByMe('enrollmentID')">Enrollment id</th>
+                    <th ng-click="orderByMe('_Student.firstMidName')">Student Sir Name</th>
+                    <th ng-click="orderByMe('_Student.lastName')">Student Last Name</th>
+                    <th ng-click="orderByMe('_Course.title')">Course</th>
+                    <th ng-click="orderByMe('_Course.credits')">Credit</th>
+                </tr>
+                <tr ng-repeat="c in courses | orderBy:myOrderBy:order | filter:filterFunc">
+                    @**@
+                    <td>{{c.enrollmentID}}</td>
+                    <td>{{c._Student.firstMidName}}</td>
+                    <td>{{c._Student.lastName}}</td>
+                    <td>{{c._Course.title}}</td>
+                    <td>{{c._Course.credits}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

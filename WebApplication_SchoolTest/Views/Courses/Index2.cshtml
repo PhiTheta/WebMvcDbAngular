@@ -1,0 +1,42 @@
+﻿
+@{
+    ViewBag.Title = "Index2";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div ng-app="MainController">
+    <h2>{{ 1 + 2 }}</h2>
+
+    <label ng-init="search.all=''">Any</label> <input type="text" ng-model="search.all"><br>
+    <label ng-init="search.id=''">ID</label> <input type="text" ng-model="search.id"><br>
+    <label ng-init="search.sirName=''">Sir Name</label> <input type="text" ng-model="search.sirName"><br>
+    <label ng-init="search.lastName=''">LAst Name</label> <input type="text" ng-model="search.lastName"><br>
+    <label ng-init="search.course=''">Course</label> <input type="text" ng-model="search.course"><br>
+    <label ng-init="search.credit=''">Credit</label> <input type="text" ng-model="search.credit"><br>
+
+    <hr>
+
+    <div class="container">
+        <div class=" row">
+            <div class="span10">
+                <table class="table table-condensed table-hover">
+                    <tr>
+                        <th ng-click="orderByMe('enrollmentID')">Enrollment id</th>
+                        <th ng-click="orderByMe('_Student.firstMidName')">Student Sir Name</th>
+                        <th ng-click="orderByMe('_Student.lastName')">Student Last Name</th>
+                        <th ng-click="orderByMe('_Course.title')">Course</th>
+                        <th ng-click="orderByMe('_Course.credits')">Credit</th>
+                    </tr>
+                    <tr ng-repeat="c in courses | orderBy:myOrderBy:order | filter:filterFunc">
+                        @**@
+                        <td>{{c.enrollmentID}}</td>
+                        <td>{{c._Student.firstMidName}}</td>
+                        <td>{{c._Student.lastName}}</td>
+                        <td>{{c._Course.title}}</td>
+                        <td>{{c._Course.credits}}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
